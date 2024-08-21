@@ -22,7 +22,7 @@ jobs:
       - name: Perform google formatter check
         run: |
           cd hospital-management/patient-service
-          mvn com.spotify.fmt:fmt-maven-plugin:check
+          mvn com.spotify.fmt:fmt-maven-plugin:format
 
       - name: Remove target directory
         run: |
@@ -67,5 +67,5 @@ jobs:
 
       - name: Push Docker Image
         run: |
-          docker push ${{ secrets.DOCKER_REGISTRY_USER }}/patient_service:${{ github.ref_name }}
+          docker push ${{ secrets.DOCKER_REGISTRY_USER }}/patient-service:${{ github.ref_name }}
 
