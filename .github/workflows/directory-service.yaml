@@ -3,7 +3,7 @@ name: Build Image for directory service
 on:
   push:
     paths:
-      - hospital-management/directory-service-hospital/**
+      - hospital-management/directory-service/**
 
 jobs:
   build-and-push-directory-service:
@@ -67,5 +67,5 @@ jobs:
 
       - name: Push Docker Image
         run: |
-          docker push ${{ secrets.DOCKER_REGISTRY_USER }}/directory_service:${{ github.ref_name }}
+          docker push ${{ secrets.DOCKER_REGISTRY_USER }}/directory-service:${{ github.ref_name }}
 
