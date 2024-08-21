@@ -22,7 +22,7 @@ jobs:
       - name: Perform google formatter check
         run: |
           cd hospital-management/patient-service
-          mvn com.spotify.fmt:fmt-maven-plugin:format
+          mvn com.spotify.fmt:fmt-maven-plugin:format -pl hospital-console
 
       - name: Remove target directory
         run: |
