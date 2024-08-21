@@ -1,0 +1,71 @@
+name: Build Case Service
+
+on:
+  push:
+    paths:
+      - hospital-management/case-service/**
+
+jobs:
+  build-and-push-case-service:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Perform google formatter check
+        run: |
+          cd hospital-management/case-service
+          mvn com.spotify.fmt:fmt-maven-plugin:check
+
+      - name: Remove target directory
+        run: |
+          cd hospital-management/case-service
+          rm -rf target
+
+      - name: GitLeaks Scan
+        run: |
+          cd hospital-management/case-service
+          docker pull jaii1515/gitleaks
+          docker run -v "$(pwd):/scan" jaii1515/gitleaks
+
+      - name: OSS scan
+        run: |
+          cd hospital-management/case-service
+          mvn ossindex:audit
+        continue-on-error: true
+
+      - name: OWASP Scan
+        if: false
+        run: |
+          cd hospital-management/case-service
+          mvn org.owasp:dependency-check-maven:check
+
+      - name: Build code and create docker image
+        run: |
+          cd hospital-management/case-service
+          mvn clean install docker:build -Dimage.registry=${{ secrets.DOCKER_REGISTRY_USER }} -Dimage.tag=${{ github.ref_name }}
+
+      - name: License finder image
+        run: |
+          cd hospital-management/case-service
+          docker pull jaii1515/license-finder
+          docker run -v "$(pwd):/scan" jaii1515/license-finder
+        continue-on-error: true
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_REGISTRY_USER }}
+          password: ${{ secrets.DOCKER_REGISTRY_PAT }}
+
+      - name: Push Docker Image
+        run: |
+          docker push ${{ secrets.DOCKER_REGISTRY_USER }}/case_service:${{ github.ref_name }}
+

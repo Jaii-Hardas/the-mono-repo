@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="1254.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginScreenController">
+   <children>
+      <Label layoutX="721.0" layoutY="554.0" prefHeight="59.0" prefWidth="498.0" text="The body when combined with the sense organs, ">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Label>
+      <Label layoutX="818.0" layoutY="608.0" prefHeight="50.0" prefWidth="276.0" text="mind and soul, becomes life">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="832.0" stroke="BLACK" strokeType="INSIDE" width="1254.0">
+         <fill>
+            <LinearGradient endX="0.6213592233009708" endY="0.21844660194174753">
+               <stops>
+                  <Stop color="#8c8282ba" />
+                  <Stop color="#8c8282ba" offset="0.00625" />
+                  <Stop color="#8c8282" offset="0.940625" />
+                  <Stop color="#e37910e8" offset="0.9500000000000001" />
+                  <Stop color="#8c8282" offset="0.9981249999999999" />
+                  <Stop color="#e37910e8" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <TextField fx:id="mobile_number" layoutX="269.0" layoutY="375.0" prefHeight="39.0" prefWidth="337.0" promptText="Mobile number" />
+      <Button fx:id="next_button" layoutX="269.0" layoutY="531.0" mnemonicParsing="false" onAction="#Next_Button" prefHeight="39.0" prefWidth="337.0" style="-fx-background-color: orange;" text="Next" textFill="#fcfaf9">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="392.0" layoutY="307.0" text="Login" textFill="#f2ebeb">
+         <font>
+            <Font name="System Bold" size="41.0" />
+         </font>
+      </Label>
+      <Label layoutX="315.0" layoutY="687.0" text="जीवयुर्भवति  0.1" textFill="#e8e6e6">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="252.0" layoutY="719.0" text="2023-2024 VzSys.inc. All rights reserved" textFill="#f8f6f6" />
+      <PasswordField fx:id="password" layoutX="269.0" layoutY="450.0" prefHeight="39.0" prefWidth="337.0" promptText="Password" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eeeded" height="132.0" layoutX="307.0" layoutY="151.0" stroke="BLACK" strokeType="INSIDE" width="261.0" />
+      <Label layoutX="322.0" layoutY="212.0" text="जी" textFill="#d37d13">
+         <font>
+            <Font name="System Bold" size="49.0" />
+         </font>
+      </Label>
+      <Label layoutX="380.0" layoutY="212.0" prefHeight="71.0" prefWidth="191.0" text="वयुर्भवति">
+         <font>
+            <Font name="System Bold" size="49.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="368.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="169.0" fitWidth="200.0" layoutX="322.0" layoutY="79.0">
+         <image>
+            <Image url="@../../../../../../../../hospital-image/logo1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="880.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="311.0" fitWidth="353.0" layoutX="828.0" layoutY="239.0">
+         <image>
+            <Image url="@../../../../../../../../hospital-image/logo.png" />
+         </image>
+      </ImageView>
+      <Line endX="100.0" layoutX="422.0" layoutY="507.0" startX="-100.0" />
+   </children>
+</Pane>

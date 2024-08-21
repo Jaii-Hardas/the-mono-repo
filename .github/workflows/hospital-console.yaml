@@ -1,0 +1,48 @@
+name: Build Hospital Console project
+
+on:
+  push: 
+    paths:
+      - hospital-management/**
+ 
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Perform google formatter check
+        run: |
+          cd hospital-management/hospital-console
+          mvn com.spotify.fmt:fmt-maven-plugin:check
+
+      - name: GitLeaks Scan
+        uses: zricethezav/gitleaks-action@v1.3.0
+        with:
+          args: --path=cd hospital-management/hospital-console
+
+      - name: OSS scan
+        run: |
+          cd hospital-management/hospital-console
+          mvn ossindex:audit
+
+      - name: OWASP Scan
+        if: false
+        run: |
+          cd hospital-management/hospital-console
+          mvn org.owasp:dependency-check-maven:check
+
+      - name: License finder
+        run: |
+          cd hospital-management/hospital-console
+          docker pull jaii1515/license-finder
+          docker run -v "$(pwd):/scan" jaii1515/license-finder
+        continue-on-error: true
