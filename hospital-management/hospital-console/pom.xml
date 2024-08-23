@@ -85,7 +85,6 @@
 
     <build>
     <plugins>
-            <!-- Other plugins -->
 
             <!-- JavaFX Maven Plugin -->
             <plugin>
