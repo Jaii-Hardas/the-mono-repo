@@ -3,10 +3,10 @@ name: Build Hospital Console project
 on:
   push: 
     paths:
-      - hospital-management/**
+      - hospital-management/hospital-console/**
  
 jobs:
-  build-and-push:
+  build-and-push-hospital-console:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,9 +25,10 @@ jobs:
           mvn com.spotify.fmt:fmt-maven-plugin:check
 
       - name: GitLeaks Scan
-        uses: zricethezav/gitleaks-action@v1.3.0
-        with:
-          args: --path=cd hospital-management/hospital-console
+        run: |
+          cd hospital-management/hospital-console
+          docker pull jaii1515/gitleaks
+          docker run -v "$(pwd):/scan" jaii1515/gitleaks
 
       - name: OSS scan
         run: |
