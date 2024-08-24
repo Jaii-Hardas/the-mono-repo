@@ -32,15 +32,15 @@ jobs:
 
       - name: Execute Git Status
         working-directory: hospital-management
-        run: make status
+        run: make git_status
 
       - name: Update Repositories
         working-directory: hospital-management
-        run: make pull
+        run: make git_pull
 
       - name: Save Local Modifications
         working-directory: hospital-management
-        run: make stash
+        run: make git_stash
 
       - name: Compile Library Module
         working-directory: hospital-management
