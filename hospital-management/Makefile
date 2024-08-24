@@ -2,10 +2,11 @@
 SERVICES := api-gateway appointment-service case-service directory-service patient-service
 LIBRARY := hospital-console
 REPO := https://github.com/Jaii-Hardas/the-mono-repo.git
+DOCKER_NAMESPACE := jaii1515
 
 # Main target 
 default: clone status pull stash build_lib build_services build_images push_images
- 
+
 # Clone all services and the JavaFX library project
 clone:
 	@echo "Starting to clone services and the JavaFX library project..."
@@ -57,13 +58,13 @@ build_images:
 	@echo "Creating Docker images for all services..."
 	@for service in $(SERVICES); do \
 		echo "Building Docker image for $$service..."; \
-		(cd $$service && docker build -t gayatri589/$$service .); \
+		(cd $$service && docker build -t $(DOCKER_NAMESPACE)/$$service:latest .); \
 	done
 
-# Push the Docker images to the Docker registry
+# Push Docker images to registry
 push_images:
-	@echo "Uploading Docker images to Docker Hub..."
+	@echo "Pushing Docker images to registry..."
 	@for service in $(SERVICES); do \
 		echo "Pushing Docker image for $$service..."; \
-		docker push jaii1515/$$service; \
+		docker push $(DOCKER_NAMESPACE)/$$service:latest; \
 	done
