@@ -57,7 +57,7 @@ build_images:
 	@echo "Creating Docker images for all services..."
 	@for service in $(SERVICES); do \
 		echo "Building Docker image for $$service..."; \
-		(cd $$service && docker build -t /$$service .); \
+		(cd $$service && docker build -t gayatri589/$$service .); \
 	done
 
 # Push the Docker images to the Docker registry
