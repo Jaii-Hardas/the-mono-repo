@@ -4,7 +4,7 @@ LIBRARY := hospital-console
 REPO := https://github.com/Jaii-Hardas/the-mono-repo.git
 
 # Main target 
-default: clone git_status pull stash build_lib build_services build_images push_images
+default: clone status pull stash build_lib build_services build_images push_images
  
 # Clone all services and the JavaFX library project
 clone:
@@ -16,7 +16,7 @@ clone:
 	@git clone $(REPO) $(LIBRARY)
 
 # Display the Git status for all projects
-git_status:
+status:
 	@echo "Checking Git status for each project..."
 	@for project in $(SERVICES) $(LIBRARY); do \
 		echo "Status for $$project:"; \
@@ -24,7 +24,7 @@ git_status:
 	done
 
 # Pull the latest changes for all projects
-git_pull:
+pull:
 	@echo "Fetching the latest changes from remote repositories..."
 	@for project in $(SERVICES) $(LIBRARY); do \
 		echo "Pulling updates for $$project..."; \
@@ -57,13 +57,13 @@ build_images:
 	@echo "Creating Docker images for all services..."
 	@for service in $(SERVICES); do \
 		echo "Building Docker image for $$service..."; \
-		(cd $$service && docker build -t jaii1515/$$service .); \
+		(cd $$service && docker build -t /$$service .); \
 	done
 
-# Push Docker images to registry
+# Push the Docker images to the Docker registry
 push_images:
-	@echo "Pushing Docker images to registry..."
+	@echo "Uploading Docker images to Docker Hub..."
 	@for service in $(SERVICES); do \
 		echo "Pushing Docker image for $$service..."; \
-		docker push jaii1515/$$service:latest; \
+		docker push jaii1515/$$service; \
 	done
