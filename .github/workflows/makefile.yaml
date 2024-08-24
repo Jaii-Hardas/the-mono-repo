@@ -1,4 +1,4 @@
-name: CI Pipeline for Hospital Management project
+name: CI Pipeline for Hospital project
 
 on:
   push:
@@ -32,15 +32,15 @@ jobs:
 
       - name: Execute Git Status
         working-directory: hospital-management
-        run: make git_status
+        run: make status
 
       - name: Update Repositories
         working-directory: hospital-management
-        run: make git_pull
+        run: make pull
 
       - name: Save Local Modifications
         working-directory: hospital-management
-        run: make git_stash
+        run: make stash
 
       - name: Compile Library Module
         working-directory: hospital-management
