@@ -60,10 +60,10 @@ build_images:
 		(cd $$service && docker build -t jaii1515/$$service .); \
 	done
 
-# Push the Docker images to the Docker registry
-push_images: build_images
+# Push Docker images to registry
+push_images:
 	@echo "Pushing Docker images to registry..."
-	for service in $(SERVICES); do \
+	for service in api-gateway appointment-service case-service directory-service patient-service; do \
 		echo "Pushing Docker image for $$service..."; \
 		docker jaii1515/$$service:latest; \
 	done
