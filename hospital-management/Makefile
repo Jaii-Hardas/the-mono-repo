@@ -24,7 +24,7 @@ git_status:
 	done
 
 # Pull the latest changes for all projects
-pull:
+git_pull:
 	@echo "Fetching the latest changes from remote repositories..."
 	@for project in $(SERVICES) $(LIBRARY); do \
 		echo "Pulling updates for $$project..."; \
