@@ -57,13 +57,13 @@ build_images:
 	@echo "Creating Docker images for all services..."
 	@for service in $(SERVICES); do \
 		echo "Building Docker image for $$service..."; \
-		(cd $$service && docker build -t gayatri589/$$service .); \
+		(cd $$service && docker build -t jaii1515/$$service .); \
 	done
 
 # Push the Docker images to the Docker registry
-push_images:
-	@echo "Uploading Docker images to Docker Hub..."
-	@for service in $(SERVICES); do \
+push_images: build_images
+	@echo "Pushing Docker images to registry..."
+	for service in $(SERVICES); do \
 		echo "Pushing Docker image for $$service..."; \
-		docker push jaii1515/$$service; \
+		docker jaii1515/$$service:latest; \
 	done
