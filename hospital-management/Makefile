@@ -63,7 +63,7 @@ build_images:
 # Push Docker images to registry
 push_images:
 	@echo "Pushing Docker images to registry..."
-	for service in api-gateway appointment-service case-service directory-service patient-service; do \
+	@for service in $(SERVICES); do \
 		echo "Pushing Docker image for $$service..."; \
-		docker jaii1515/$$service:latest; \
+		docker push jaii1515/$$service:latest; \
 	done
